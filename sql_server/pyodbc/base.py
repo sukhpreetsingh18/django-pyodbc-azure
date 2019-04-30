@@ -8,7 +8,7 @@ import time
 from django.core.exceptions import ImproperlyConfigured
 from django import VERSION
 
-if VERSION[:3] < (2,1,0) or VERSION[:2] >= (2,2):
+if VERSION[:3] < (2,2,0) or VERSION[:2] >= (2,3):
     raise ImproperlyConfigured("Django %d.%d.%d is not supported." % VERSION[:3])
 
 try:
@@ -46,7 +46,6 @@ EDITION_AZURE_SQL_DB = 5
 
 def encode_connection_string(fields):
     """Encode dictionary of keys and values as an ODBC connection String.
-
     See [MS-ODBCSTR] document:
     https://msdn.microsoft.com/en-us/library/ee208909%28v=sql.105%29.aspx
     """
@@ -369,7 +368,6 @@ class DatabaseWrapper(BaseDatabaseWrapper):
     def sql_server_version(self, _known_versions={}):
         """
         Get the SQL server version
-
         The _known_versions default dictionary is created on the class. This is
         intentional - it allows us to cache this property's value across instances.
         Therefore, when Django creates a new database connection using the same
@@ -389,7 +387,6 @@ class DatabaseWrapper(BaseDatabaseWrapper):
     def to_azure_sql_db(self, _known_azures={}):
         """
         Whether this connection is to a Microsoft Azure database server
-
         The _known_azures default dictionary is created on the class. This is
         intentional - it allows us to cache this property's value across instances.
         Therefore, when Django creates a new database connection using the same
